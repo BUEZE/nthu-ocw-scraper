@@ -4,13 +4,8 @@ module OcwNotes
   # Url of the source website: http://ocw.nthu.edu.tw/ocw/index.php?page=mediaList&classid=5
   class OpenCourseWareNotes
 
-    # Initialize instance when created
-    def initialize(coursename)
-    end
-
     # Return notes in hash
-    def notes
-        @notes ||= extract_notes
+    def self.get_notes(coursename)
     end
 
     private
