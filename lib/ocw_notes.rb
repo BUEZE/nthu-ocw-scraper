@@ -26,13 +26,13 @@ module OcwNotes
 
     def self.get_note_img_link(url)
       target_link = $home_string+url
-      target_link = 'http://ocw.nthu.edu.tw/ocw/index.php?page=mediaContent&id=615'
+      # target_link = 'http://ocw.nthu.edu.tw/ocw/index.php?page=mediaContent&id=615'
 
       docs = self.get_url_html(target_link) # get url's html source code
       # write_to_file(docs, './test.html')
       imgArr = docs.xpath("//div[@class='mediaBlock']/ul/li/img")
       imgArr.each do |x| 
-        x = x.attributes['src'].content
+        x = $home_string + x.attributes['src'].content
       end
       imgArr
     end
