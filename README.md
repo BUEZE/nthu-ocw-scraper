@@ -16,3 +16,6 @@ gem install nokogiri
 ```
 ruby ocw_notes.rb
 ```
+
+## Requirements
+- US $ 1000
