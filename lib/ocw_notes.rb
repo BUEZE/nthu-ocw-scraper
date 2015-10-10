@@ -67,8 +67,6 @@ module OcwNotes
     def self.write_to_file(content,filename)
       File.open(filename, 'w') { |file| file.write(content) }
     end
-    
-
   end
   OpenCourseWareNotes.get_notes('心理學');
 end
