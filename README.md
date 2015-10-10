@@ -8,9 +8,9 @@ Search keyword and get all notes from NTHU OCW(http://ocw.nthu.edu.tw/ocw/)
 - you come from Chicago?
 
 ### Installation
-- [Nokogiri](http://www.nokogiri.org) package 
+- Install packages
 ```
-gem install nokogiri
+bundle install
 ```
 - and run the lib/ocw_notes.rb
 ```
