@@ -20,7 +20,21 @@ module OcwNotes
       searchArr.each do |x| 
         links.push x.attributes['onclick'].content.match(/'([^']+)/)[1] # parse onclick string
       end
-      p links
+      get_note_img_link(links[0])
+      # p links
+    end
+
+    def self.get_note_img_link(url)
+      target_link = $home_string+url
+      target_link = 'http://ocw.nthu.edu.tw/ocw/index.php?page=mediaContent&id=615'
+
+      docs = self.get_url_html(target_link) # get url's html source code
+      # write_to_file(docs, './test.html')
+      imgArr = docs.xpath("//div[@class='mediaBlock']/ul/li/img")
+      imgArr.each do |x| 
+        x = x.attributes['src'].content
+      end
+      imgArr
     end
 
     private
@@ -48,6 +62,10 @@ module OcwNotes
     def self.strToASCII(convert_string)
       # ascii_str = convert_string.unpack("U*").map{|c|c.chr}.join
       ascii_str = convert_string.unpack("U*").map{|c|c.chr rescue '_' }.join 
+    end
+
+    def self.write_to_file(content,filename)
+      File.open(filename, 'w') { |file| file.write(content) }
     end
     
 
