@@ -13,19 +13,15 @@ class OpenCourseWareNotes
     search_link_str = 'http://ocw.nthu.edu.tw/ocw/index.php?page=mediaList&classid=5&keyword='
     docs = get_url_html(search_link_str + coursename) # get url's html source code
     search_arr = docs.xpath("//div[@class='singleMediaBlock']") # get all link class by 'singleMediaBlock'
-    # print search_link_str + coursename
     links = [] # get all search result link
     search_arr.each do |x|
       links.push x.attributes['onclick'].content.match(/'([^']+)/)[1] # parse onclick string
     end
-    # print links
-    get_note_img_link(links[0])
-    # p links
+    extract_notes(links[0])
   end
 
-  private
-
-  def get_note_img_link(url)
+  # Extrace notes from parsed html file
+  def extract_notes(url)
     target_link = $home_string + url
     # target_link = 'http://ocw.nthu.edu.tw/ocw/index.php?page=mediaContent&id=615'
 
@@ -36,21 +32,5 @@ class OpenCourseWareNotes
       x = $home_string + x.attributes['src'].content
     end
     img_arr
-  end
-
-  # Extrace notes from parsed html file
-  def extract_notes
-  end
-
-  private
-
-  # get link's html code and parse by Nokogiri
-  def get_url_html(urlpath)
-    url = URI.parse(URI::encode(urlpath))
-    print url
-    req = Net::HTTP::Get.new(url.to_s)
-    res = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
-    html_doc = Nokogiri::HTML(res.body)
-    html_doc
   end
 end
