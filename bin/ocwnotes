@@ -1,11 +1,11 @@
 #!/usr/bin/env ruby
 
-require_relative '../lib/ocw_notes'
+require_relative '../lib/open_course_ware_notes'
 
 fail ArgumentError, "Usage: notes [course_keyword]\n" if ARGV.count == 0
 course_keyword = ARGV[0]
 
-notes_found = OcwNotes::OpenCourseWareNotes.get_notes(course_keyword)
+notes_found = OpenCourseWareNotes.new.parse_html(course_keyword)
 
 puts "#{course_keyword} has collected #{notes_found.size} notes"
 
