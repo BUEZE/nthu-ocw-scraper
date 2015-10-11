@@ -46,7 +46,8 @@ class OpenCourseWareNotes
 
   # get link's html code and parse by Nokogiri
   def get_url_html(urlpath)
-    url = URI.parse(str_to_ascii(urlpath))
+    url = URI.parse(URI::encode(urlpath))
+    print url
     req = Net::HTTP::Get.new(url.to_s)
     res = Net::HTTP.start(url.host, url.port) { |http| http.request(req) }
     html_doc = Nokogiri::HTML(res.body)
