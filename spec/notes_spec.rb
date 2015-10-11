@@ -1,6 +1,5 @@
 require 'minitest/autorun'
-require 'minitest/rg'
-require './lib/ocw_notes.rb'
+require_relative '../lib/open_course_ware_notes.rb'
 
 notes = {
   '615' => {
@@ -73,7 +72,7 @@ notes = {
 
 describe 'Get all the notes with specific keywords' do
   before do
-    @notes_found = OcwNotes::OpenCourseWareNotes.get_notes('心理學')
+    @notes_found = OpenCourseWareNotes.new.parse_html('心理學')
   end
 
   it 'has the right number of notes' do
