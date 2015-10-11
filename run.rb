@@ -1,5 +1,5 @@
-require_relative 'lib/ocw_notes'
+require_relative 'lib/open_course_ware_notes'
 # require 'OcwNotes'
 
 course = OpenCourseWareNotes.new
-print course.get_notes('心理學')
+print course.parse_html('心理學')
